@@ -1,13 +1,14 @@
-import './App.css'
-import { Tracker } from './components/tracker'
+import "./App.css";
+
+import { Tracker } from "./components/tracker";
 
 function App() {
-
   return (
     <>
+
       <Tracker />
     </>
-  )
+  );
 }
 
-export default App
+export default App;
