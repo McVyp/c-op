@@ -3,26 +3,25 @@ import ColorHash from "color-hash";
 import React, { forwardRef } from "react";
 import { ClientConnection } from "../types";
 import { Arrow } from "./arrow";
+const hash = new ColorHash({ lightness: 0.3 });
 
-interface CursorProps {
+export interface CursorProps {
   connection: ClientConnection;
 }
 
-export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Curosor(
+export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Cursor(
   { connection },
   ref
 ) {
-  if (!connection) {
-    return null;
-  }
-
-  const hash = new ColorHash({ lightness: 0.3 });
   const color = hash.hex(connection.user.name);
+
   return (
     <div
       ref={ref}
       className={clsx(
         "fixed flex translate-x-[--x] translate-y-[--y] gap-1 rounded text-xs",
+        // If we don't have any initial coordinates for the user, hide this
+        // cursor. This happens when a new client first connects.
         connection.coords.x ? "visible" : "invisible"
       )}
       style={
@@ -33,7 +32,11 @@ export const Cursor = forwardRef<HTMLDivElement, CursorProps>(function Curosor(
       }
     >
       <Arrow color={color} />
-      <span className="relative " style={{ backgroundColor: color }}>
+
+      <span
+        className="relative -left-1.5 top-4 rounded-sm px-1.5 py-0.5 text-white"
+        style={{ backgroundColor: color }}
+      >
         {connection.user.name}
       </span>
     </div>
