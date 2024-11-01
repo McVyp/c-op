@@ -49,6 +49,7 @@ export function Cursors() {
 
         case "disconnect":
           setCursors((prev) => {
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             const { [data.connectionId]: _, ...next } = prev;
             return next;
           });
