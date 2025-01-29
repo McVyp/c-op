@@ -56,7 +56,7 @@ function subscribe(url: string, fn: Subscriber) {
 export function useSocket() {
     const { name } = useUser()
     const [socket, setSocket] = useState<WebSocket | null>(null)
-    const url = `ws://${location.hostname}:8081/chat?name=${name}`
+    const url = `wss://${location.hostname}:8081/chat?name=${name}`
 
     useEffect(() => {
         function drainQueue(socket: WebSocket) {
