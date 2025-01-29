@@ -21,7 +21,7 @@ function join(url: string) {
 
         socket.addEventListener("open", (e) => {
             if (disconnected) {
-                console.log("Reconnecte dot the server. ")
+                console.log("Reconnect dot the server. ")
                 disconnected = false
             }
             subscribers.get(url)?.forEach((fn) => fn("open", socket, e))
