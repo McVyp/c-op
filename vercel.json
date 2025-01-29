@@ -1,0 +1,19 @@
+{
+    "builds": [
+      {
+        "src": "src/package.json",
+        "use": "@vercel/node"
+      },
+      {
+        "src": "server/index.ts",
+        "use": "@vercel/node"
+      }
+    ],
+    "routes": [
+      {
+        "src": "/chat",
+        "dest": "/server/index.ts"
+      }
+    ]
+  }
+  
